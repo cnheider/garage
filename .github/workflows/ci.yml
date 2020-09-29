@@ -370,6 +370,9 @@ jobs:
           pip install
           pep517
           --user
+      - name: Setup Distribution
+        run: >-
+          python setup.py sdist
       - name: Build a binary wheel and a source tarball
         run: >-
           python -m
@@ -377,9 +380,6 @@ jobs:
           --source
           --binary
           --out-dir dist/
-      - name: Setup Distribution
-        run: >-
-          python setup.py sdist
       - name: Deploy to PYPI
         uses: pypa/gh-action-pypi-publish@master
         with:
